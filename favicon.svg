@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">VTV favicon</title>
+  <desc id="desc">Monograma VTV sobre fondo oscuro</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#132b2d" />
+      <stop offset="100%" stop-color="#0f5b5b" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)" />
+  <rect x="18" y="18" width="220" height="220" rx="42" fill="none" stroke="rgba(255,253,250,0.24)" stroke-width="2" />
+  <text x="128" y="145" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" letter-spacing="7" fill="#fffdfa">VTV</text>
+</svg>
