@@ -8,18 +8,42 @@ document.addEventListener('DOMContentLoaded', function () {
     navbar.classList.toggle('scrolled', window.scrollY > 10);
   }
   window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  function setMenuState(isOpen) {
+    navMenu.classList.toggle('open', isOpen);
+    navToggle.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    navMenu.setAttribute('aria-hidden', String(!isOpen));
+    document.body.classList.toggle('nav-open', isOpen);
+  }
+
+  navToggle.setAttribute('aria-expanded', 'false');
+  navMenu.setAttribute('aria-hidden', 'true');
 
   // Mobile menu toggle
   navToggle.addEventListener('click', function () {
-    navMenu.classList.toggle('open');
+    setMenuState(!navMenu.classList.contains('open'));
   });
 
   // Close mobile menu on link click
   navMenu.querySelectorAll('.nav-link').forEach(function (link) {
     link.addEventListener('click', function () {
-      navMenu.classList.remove('open');
+      setMenuState(false);
     });
   });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      setMenuState(false);
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 768) {
+      setMenuState(false);
+    }
+  }, { passive: true });
 
   // Fade-in on scroll (Intersection Observer)
   var fadeTargets = document.querySelectorAll(
@@ -50,5 +74,30 @@ document.addEventListener('DOMContentLoaded', function () {
     fadeTargets.forEach(function (el) {
       el.classList.add('visible');
     });
+  }
+
+  // Load bundled animation data so it also works when the site is opened from disk.
+  var landingContainer = document.getElementById('lottie-landing');
+  var heroLandingPageAnimation = window.heroLandingPageAnimation;
+
+  if (landingContainer && typeof lottie !== 'undefined' && heroLandingPageAnimation) {
+    var landingAnimation = lottie.loadAnimation({
+      container: landingContainer,
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      animationData: heroLandingPageAnimation,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid meet'
+      }
+    });
+
+    var landingResizeTimer;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(landingResizeTimer);
+      landingResizeTimer = window.setTimeout(function () {
+        landingAnimation.resize();
+      }, 100);
+    }, { passive: true });
   }
 });
