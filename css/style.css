@@ -763,24 +763,17 @@ body.nav-open {
 /* ===== Lottie Landing ===== */
 #lottie-landing {
   width: 100%;
-  height: 100vh;
-  height: 100svh;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background-color: var(--color-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   z-index: 50; /* Below navbar (100) but above content */
-  padding: calc(var(--nav-height) + clamp(16px, 4vh, 32px)) clamp(16px, 4vw, 32px) clamp(16px, 4vh, 32px);
 }
 
 #lottie-landing > svg,
 #lottie-landing > canvas {
   width: 100% !important;
   height: 100% !important;
-  max-width: 100%;
-  max-height: 100%;
   display: block;
 }
 
@@ -795,26 +788,33 @@ body.nav-open {
 
   .nav-toggle {
     display: flex;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: var(--color-primary-light);
   }
 
   .nav-menu {
     position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255,255,255,0.97);
+    top: calc(var(--nav-height) + 12px);
+    left: clamp(12px, 4vw, 20px);
+    right: clamp(12px, 4vw, 20px);
+    bottom: auto;
+    max-height: min(calc(100svh - var(--nav-height) - 24px), 420px);
+    background: rgba(255,255,255,0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     flex-direction: column;
     align-items: stretch;
-    padding: 16px clamp(16px, 5vw, 24px) calc(24px + env(safe-area-inset-bottom));
-    gap: 8px;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
+    padding: 12px;
+    gap: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
     overflow-y: auto;
     overscroll-behavior: contain;
-    transform: translateY(calc(-100% - 16px));
+    z-index: 110;
+    transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -833,14 +833,16 @@ body.nav-open {
   .nav-link {
     display: block;
     width: 100%;
-    padding: 14px 16px;
-    font-size: 1rem;
+    padding: 16px 18px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
   }
 
   .hero {
     min-height: auto;
-    padding-top: calc(var(--nav-height) + 48px);
-    padding-bottom: 56px;
+    padding-top: calc(var(--nav-height) + 32px);
+    padding-bottom: 40px;
   }
 
   .hero-content,
@@ -853,7 +855,7 @@ body.nav-open {
   }
 
   .section {
-    padding: 60px 0;
+    padding: 52px 0;
   }
 
   .about-grid {
@@ -929,8 +931,8 @@ body.nav-open {
   }
 
   .hero {
-    padding-top: calc(var(--nav-height) + 32px);
-    padding-bottom: 48px;
+    padding-top: calc(var(--nav-height) + 20px);
+    padding-bottom: 32px;
   }
 
   .hero-name {
