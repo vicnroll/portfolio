@@ -12,11 +12,14 @@
 </head>
 <body>
 
+  <!-- Lottie Landing -->
+  <div id="lottie-landing"></div>
+
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#hero" class="nav-logo">VTV</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación">
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-controls="navMenu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-menu" id="navMenu">
@@ -35,8 +38,8 @@
     <div class="container hero-content">
       <p class="hero-greeting">Hola, soy</p>
       <h1 class="hero-name">Víctor Torrandell Vargas</h1>
-      <h2 class="hero-title">.NET Software Architect</h2>
-      <p class="hero-summary">Arquitectura de software, modernización de aplicaciones y definición de estándares técnicos en entornos empresariales. Especializado en C#, .NET, Azure, DevOps e IA aplicada al desarrollo.</p>
+      <h2 class="hero-title">.NET Software Architect &amp; AI Engineer</h2>
+      <p class="hero-summary">Arquitectura de software, modernización de aplicaciones y definición de estándares técnicos en entornos empresariales. Especializado en C#, .NET, Azure, DevOps e IA aplicada al desarrollo. Comparto ese aprendizaje en charlas y artículos técnicos</p>
       <div class="hero-actions">
         <a href="#experience" class="btn btn-primary">Ver experiencia</a>
         <a href="#contact" class="btn btn-outline">Contacto</a>
@@ -514,6 +517,9 @@
     </div>
   </footer>
 
+  <!-- Landing animation scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" integrity="sha512-4W1XHlzTH0jzZMfjNV8iPBUFeCFGXFZ8iDSHPsuacF2nwLxgPLZld0dfzpOwLKhPNgm6kKiC9JIhbSAVnX1nvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/hero-landing-page.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
