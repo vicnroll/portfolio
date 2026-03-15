@@ -816,14 +816,17 @@ body.nav-open {
     z-index: 110;
     transform: translateY(-12px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s;
   }
 
   .nav-menu.open {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+    transition-delay: 0s;
   }
 
   .nav-menu li {

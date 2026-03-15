@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
+  const mobileMenuMedia = window.matchMedia('(max-width: 768px)');
 
   // Navbar scroll shadow
   function handleScroll() {
@@ -11,15 +12,21 @@ document.addEventListener('DOMContentLoaded', function () {
   handleScroll();
 
   function setMenuState(isOpen) {
-    navMenu.classList.toggle('open', isOpen);
-    navToggle.classList.toggle('active', isOpen);
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-    navMenu.setAttribute('aria-hidden', String(!isOpen));
-    document.body.classList.toggle('nav-open', isOpen);
+    const isMobileViewport = mobileMenuMedia.matches;
+    const shouldOpen = isMobileViewport && isOpen;
+
+    navMenu.classList.toggle('open', shouldOpen);
+    navToggle.classList.toggle('active', shouldOpen);
+    navToggle.setAttribute('aria-expanded', String(shouldOpen));
+    navMenu.setAttribute('aria-hidden', String(isMobileViewport ? !shouldOpen : false));
+    document.body.classList.toggle('nav-open', shouldOpen);
   }
 
-  navToggle.setAttribute('aria-expanded', 'false');
-  navMenu.setAttribute('aria-hidden', 'true');
+  function syncNavAccessibility() {
+    setMenuState(navMenu.classList.contains('open'));
+  }
+
+  syncNavAccessibility();
 
   // Mobile menu toggle
   navToggle.addEventListener('click', function () {
@@ -40,9 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 768) {
-      setMenuState(false);
-    }
+    syncNavAccessibility();
   }, { passive: true });
 
   // Fade-in on scroll (Intersection Observer)
