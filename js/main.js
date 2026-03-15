@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Load bundled animation data so it also works when the site is opened from disk.
+  // Load bundled animation data from the page instead of fetching JSON separately (requires Lottie runtime to be loaded).
   var landingContainer = document.getElementById('lottie-landing');
   var heroLandingPageAnimation = window.heroLandingPageAnimation;
 
